@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="DreamWaltz-G creates expressive 3D animatable avatars from texts">
+  <meta name="keywords" content="DreamWaltz-G, Avatars, Text-to-3D, 3D Gaussians">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DreamWaltz-G: Expressive 3D Gaussian Avatars from Skeleton-Guided 2D Diffusion</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./style.css">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <link rel="icon" href="./assets/logo.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- model viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+
+</head>
+
+<body>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">DreamWaltz-G: Expressive 3D Gaussian Avatars from Skeleton-Guided 2D Diffusion</h1>
+          <div class="is-size-4 publication-title">
+            <span style="font-weight: bold;">Extended Version of <a href="https://idea-research.github.io/DreamWaltz/">DreamWaltz</a></span>
+          </div>
+          &nbsp;
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=lHb5gzoAAAAJ">Yukun Huang</a><sup> 1</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/wendyjnwang">Jianan Wang</a><sup> 2</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://ailingzeng.site">Ailing Zeng</a><sup> 3</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://en.auto.ustc.edu.cn/2021/0616/c26828a513174/page.htm">Zheng-Jun Zha</a><sup> 4</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://www.leizhang.org">Lei Zhang</a><sup> 5</sup>&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span class="author-block">
+              <a href="https://xh-liu.github.io">Xihui Liu</a><sup> 1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1 </sup>The University of Hong Kong</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>2 </sup>Astribot</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>3 </sup>Tencent</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>4 </sup>University of Science and Technology of China</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>5 </sup>International Digital Economy Academy (IDEA)</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>&nbsp;
+              <!-- ArXiv Link. -->
+              <span class="link-block">
+                <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>ArXiv</span>
+                </a>
+              </span>&nbsp;
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>&nbsp;
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/yukun-huang/DreamWaltz-G"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming Soon)</span>
+                  </a>
+              </span>&nbsp;
+              <!-- Asset Link. -->
+              <span class="link-block">
+                <a href=""
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Results</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Preview. -->
+<section class="hero is-light is-small">
+  <div class="hero-body" style="padding: 0%;">
+    <div class="container">
+      <div class="carousel results-carousel">
+        <div class="item" style="font-size: 0;">
+          <video autoplay muted loop height="100%">
+            <source src="assets/applications/garden_arguing_elderly_man_and_chef_clip.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item" style="font-size: 0;">
+          <video autoplay muted loop height="100%">
+            <source src="assets/applications/garden_arguing_gardener_and_tank_top_clip.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item" style="font-size: 0;">
+          <video autoplay muted loop height="100%">
+            <source src="assets/applications/bicycle_capoeira_dc_clip.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="item" style="font-size: 0;">
+          <video autoplay muted loop height="100%">
+            <source src="assets/applications/bicycle_capoeira_disney_clip.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column" style="flex:none; width: 100%;">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified" style="font-size: 22px;">
+          <p>
+            In this work, we introduce <b>DreamWaltz-G</b>, a novel learning framework for text-driven 3D avatar creation and expressive whole-body animation.
+          <p>
+            The core of this framework lies in the proposed <b>Skeleton-guided Score Distillation</b> and <b>Hybrid 3D Gaussian Avatar Representation</b>.
+            Specifically, the proposed skeleton-guided score distillation integrates skeleton controls from 3D human templates into 2D diffusion models, enhancing the consistency of SDS supervision in terms of view and human pose.
+            This facilitates the generation of high-quality avatars, mitigating issues such as multiple faces, extra limbs, and blurring.
+            The proposed hybrid 3D Gaussian avatar representation builds on the efficient 3D Gaussians, combining neural implicit fields and parameterized 3D meshes to enable real-time rendering, stable SDS optimization, and expressive animation.
+          </p>
+          <p>
+            Extensive experiments demonstrate that DreamWaltz-G is highly effective in generating and animating 3D avatars, outperforming existing methods in both visual quality and animation expressiveness.
+            Our framework further supports diverse applications, including human video reenactment and multi-subject scene composition.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- News. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">What's New</h2>
+        <div class="content has-text-justified">
+          <span style="font-size: 24px;">📢 2024-09: Project page released!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Avatar Gallery -->
+<section class="section">
+  <div class="container is-centered">
+    <!-- Title -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Avatar Gallery</h2>
+      </div>
+    </div>
+
+    <!-- Canonical Avatars -->
+    <h3 class="text" style="font-size: 24px;"><b>Canonical Avatars.</b> DreamWaltz-G can create whole-body canonical 3D avatars from only textual descriptions:</h3>
+    <div class="container" style="font-size: 22px;">
+      <div class="carousel results-carousel">
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/a_chef_dressed_in_white.mp4" type="video/mp4">
+          </video>
+          A chef dressed in white.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/a_clown.mp4" type="video/mp4">
+          </video>
+          A clown.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/a_gardener_in_overalls_and_a_wide-brimmed_hat.mp4" type="video/mp4">
+          </video>
+          A gardener in overalls and a wide.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/a_karate_master.mp4" type="video/mp4">
+          </video>
+          A karate master.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/a_man_wearing_a_white_tank_top_and_shorts.mp4" type="video/mp4">
+          </video>
+          A man wearing a white tank top and shorts.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/a_professional_boxer.mp4" type="video/mp4">
+          </video>
+          A professional boxer.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/an_asian_woman_in_a_leather_jacket.mp4" type="video/mp4">
+          </video>
+          An Asian woman in a leather jacket.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/an_elderly_man_wearing_a_beige_suit.mp4" type="video/mp4">
+          </video>
+          An elderly man wearing a beige suit.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/black_widow.mp4" type="video/mp4">
+          </video>
+          Black Widow.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/flynn_rider.mp4" type="video/mp4">
+          </video>
+          Flynn Rider.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/goku.mp4" type="video/mp4">
+          </video>
+          Goku.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/harley_quinn.mp4" type="video/mp4">
+          </video>
+          Harley Quinn.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/jane_goodall.mp4" type="video/mp4">
+          </video>
+          Jane Goodall.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/joker.mp4" type="video/mp4">
+          </video>
+          Joker.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/kobe_bryant.mp4" type="video/mp4">
+          </video>
+          Kobe Bryant.
+        </div>
+        <div class="item">
+          <video autoplay muted loop height="100%">
+            <source src="assets/canonical_avatars/rapunzel_in_tangled.mp4" type="video/mp4">
+          </video>
+          Rapunzel in Tangled.
+        </div>
+      </div>
+    </div>
+
+    <!-- Animatable Avatars -->
+    <h3 class="text" style="font-size: 24px;"><b>Animatable Avatars.</b> The generated 3D avatars can be animated given SMPL-X motion sequences:</h3>
+    <video id="animatable" autoplay muted loop playsinline width="100%">
+      <source src="./assets/animatable_avatars/talkshow_chemistry.mp4" type="video/mp4">
+    </video>
+    <video id="animatable" autoplay muted loop playsinline width="100%">
+      <source src="./assets/animatable_avatars/motionx_turn.mp4" type="video/mp4">
+    </video>
+    <video id="animatable" autoplay muted loop playsinline width="100%">
+      <source src="./assets/animatable_avatars/motionx_fitness.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+    
+<!-- Application -->
+<section class="section">
+  <div class="container is-centered">
+    <!-- Title -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Applications</h2>
+      </div>
+    </div>
+
+    <!-- Shape Control and Editing -->
+    <h3 class="text" style="font-size: 24px;"><b>Shape Control and Editing.</b> Our method enables: (a) training-time shape control by modifying the SMPL-X template, and (b) inference-time shape editing by explicitly adjusting the 3D Gaussians.</h3>
+    <video controls muted loop playsinline width="100%" style="margin-bottom: 20px;">
+      <source src="./assets/applications/shape.mp4" type="video/mp4">
+    </video>
+    
+    <!-- Human Video Renenactment -->
+    <h3 class="text" style="font-size: 24px;"><b>Human Video Renenactment.</b> Our method enables: (a) training-time shape control by modifying the SMPL-X template, and (b) inference-time shape editing by explicitly adjusting the 3D Gaussians.</h3>
+    <video controls muted loop playsinline width="100%" style="margin-top: 8px; margin-bottom: 20px;">
+      <source src="./assets/applications/video_reenactment.mp4" type="video/mp4" style="margin-bottom: 10px;">
+    </video>
+    
+    <!-- Multi-Subject Scene Composition -->
+    <h3 class="text" style="font-size: 24px;"><b>Multi-Subject Scene Composition.</b> Our method enables: (a) training-time shape control by modifying the SMPL-X template, and (b) inference-time shape editing by explicitly adjusting the 3D Gaussians.</h3>
+    <div class="videos" style="display: flex; flex-wrap: wrap; gap: 5px 5px; margin-top: 8px;">
+      <video controls muted loop playsinline width="49.8%">
+        <source src="./assets/applications/garden_arguing_elderly_man_and_chef_clip.mp4" type="video/mp4">
+      </video>
+      <video controls muted loop playsinline width="49.8%">
+        <source src="./assets/applications/garden_arguing_gardener_and_tank_top_clip.mp4" type="video/mp4">
+      </video>
+      <video controls muted loop playsinline width="49.8%">
+        <source src="./assets/applications/bicycle_capoeira_dc_clip.mp4" type="video/mp4">
+      </video>
+      <video controls muted loop playsinline width="49.8%">
+        <source src="./assets/applications/bicycle_capoeira_disney_clip.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+  <h2 class="title">BibTeX</h2>
+  <pre><code style="font-size: 15px;">@article{huang2024dreamwaltz-g,
+  title={{DreamWaltz-G: Expressive 3D Gaussian Avatars from Skeleton-Guided 2D Diffusion}},
+  author={Huang, Yukun and Wang, Jianan and Zeng, Ailing and Zha, Zheng-Jun and Zhang, Lei and Liu, Xihui},
+  year={2024},
+  eprint={},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+}
+
+@inproceedings{huang2024dreamwaltz,
+  title={{DreamWaltz: Make a Scene with Complex 3D Animatable Avatars}},
+  author={Huang, Yukun and Wang, Jianan and Zeng, Ailing and Cao, He and Qi, Xianbiao and Shi, Yukai and Zha, Zheng-Jun and Zhang, Lei},
+  booktitle={Proceedings of the 37th International Conference on Neural Information Processing Systems},
+  pages={4566--4584},
+  year={2023}
+}</code></pre>
+  </div>
+</section>
+
+</body>
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>This website is constructed using the template provided by
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</html>
