@@ -23,7 +23,8 @@ _**[Yukun Huang](https://scholar.google.com/citations?user=lHb5gzoAAAAJ),
 ## Introduction
 
 <p align="middle">
-<video src="assets/teaser.mp4" autoplay muted loop width="100%"><br>
+<img src="assets/teaser.gif" width="100%">
+<br>
 <em>**DreamWaltz-G** utilizes skeleton-guided 2D diffusion for text-to-3D avatar generation and expressive whole-body animation, which supports diverse applications like shape control & editing, 2D video reenactment, and 3D scene composition.</em>
 </p>
 
