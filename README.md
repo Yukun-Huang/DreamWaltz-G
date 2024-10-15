@@ -28,8 +28,8 @@ _**[Yukun Huang](https://scholar.google.com/citations?user=lHb5gzoAAAAJ),
 
 ## 📢 News
 - [2024-10-15] 🔥Release the training and inference code.
-- [2024-10-15] 🔥Release the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars, ready for 3D animation and 2D video reenactment.
-- [2024-10-15] 🔥Release a video-motion-camera [dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) for 2D human video reenactment. It comprises 19 human motion scenes with original videos, inpainted videos (where humans are removed), SMPL-X motions, and camera parameters.
+- [2024-10-15] 🔥Release the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars ready for inference.
+- [2024-10-15] 🔥Release a [dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) for 2D human video reenactment. It comprises 19 human motion scenes with original videos, inpainted videos (where humans are removed), SMPL-X motions, and camera parameters.
 - [2024-09-26] 📢Publish the [arXiv preprint](https://arxiv.org/abs/2409.17145) and update the [project page](https://yukun-huang.github.io/DreamWaltz-G/).
 
 ## ⚙️ Setup
