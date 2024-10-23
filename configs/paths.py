@@ -11,3 +11,6 @@ TALKSHOW_ROOT = './datasets/TalkShow/'
 # Datasets (Not used)
 AMASS_ROOT = './datasets/AMASS/'
 HYBRIK_ROOT = './datasets/HybrIK/'
+
+# Video in the wild integration
+TRAM_ROOT = './custom_motion/tram/'
