@@ -194,7 +194,8 @@ To reenact your own video, 3D human pose and camera estimation are needed. We re
 ```bash
 bash scripts/inference_tram.sh
 ```
-The results are saved as images and videos in the respective model directories.
+
+https://github.com/user-attachments/assets/b100c8f9-e07a-472b-9bca-774de886191c
 
 ## 🗣️ Discussions
 ### The generation results are not satisfactory and suffer from problems such as over-saturation, partial missing, and blurring.
