@@ -9,6 +9,7 @@ from .demo import Demo
 from .motionx import MotionX
 from .motionx_reenact import MotionX_ReEnact
 from .talkshow import TalkShow
+from .tram import Tram
 from core.human.smpl_model import SMPLModel
 
 
@@ -21,6 +22,7 @@ DATASET_CARDS = {
     'motionx': MotionX,
     'motionx_reenact': MotionX_ReEnact,
     'talkshow': TalkShow,
+    "tram": Tram,
 }
 
 
@@ -66,7 +68,7 @@ def load_smpl_sequences(scene: str, model_type: str, camera_sequences: Optional[
     # Load Data
     if _dataset is None:
         _dataset = DATASET_CARDS[dataset]()
-    if dataset != 'motionx_reenact':
+    if dataset != 'motionx_reenact' and dataset != 'tram':
         smpl_seqs = _dataset.get_smpl_params(filename, model_type=model_type)
     else:
         smpl_seqs, cam_seqs = _dataset.get_smpl_params(filename, model_type=model_type)
