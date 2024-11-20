@@ -23,11 +23,11 @@ _**[Yukun Huang](https://scholar.google.com/citations?user=lHb5gzoAAAAJ),
 <p align="middle">
 <img src="assets/teaser.gif" width="100%">
 <br>
-<em><b>DreamWaltz-G</b> utilizes skeleton-guided 2D diffusion for text-to-3D avatar generation and expressive whole-body animation, which supports diverse applications like shape control & editing, 2D human video reenactment, and 3D Gaussian scene composition.</em>
+<em><b>DreamWaltz-G</b> is a novel learning framework for text-driven 3D avatar creation and expressive whole-body animation. Its core design lies in hybrid 3D Gaussian avatar representation and skeleton-guided 2D diffusion. Our method supports diverse applications like shape control & editing, 2D human video reenactment, and 3D Gaussian scene composition.</em>
 </p>
 
 ## 📢 News
-- [2024-11-20] 🔥New feature! Reenact our avatars for arbitrary in-the-wild video! (thank @[gt732](https://github.com/gt732))
+- [2024-11-20] 🔥New feature! Reenact arbitrary in-the-wild video with our generated avatars! (thank @[gt732](https://github.com/gt732))
 - [2024-10-15] 🔥Release the training and inference code.
 - [2024-10-15] 🔥Release the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars ready for inference.
 - [2024-10-15] 🔥Release a [dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) for 2D human video reenactment. It comprises 19 human motion scenes with original videos, inpainted videos (where humans are removed), SMPL-X motions, and camera parameters.
