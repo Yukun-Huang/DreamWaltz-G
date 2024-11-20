@@ -57,7 +57,7 @@ python -m core.nerf.raymarching.rgb.backend
 ```
 
 ## 🤖 Models
-### Human Templates (Required for Training and Inference)
+### 1. Human Templates (Required for Training and Inference)
 Before running the code, you need to prepare the human template models: [SMPL-X](https://smpl-x.is.tue.mpg.de/), [FLAME](https://flame.is.tue.mpg.de/), and [VPoser](https://smpl-x.is.tue.mpg.de/). Please download them from the official project pages: https://smpl-x.is.tue.mpg.de/ and https://flame.is.tue.mpg.de/, then organize them following the structure below:
 ```
 external
@@ -79,7 +79,7 @@ external
 ```
 If you already have these models on your machine, you can simply modify the path in `configs/path.py` to link to them.
 
-### Pre-trained Instant-NGP (Required for Training)
+### 2. Pre-trained Instant-NGP (Required for Training)
 DreamWaltz-G adopts a two-stage training pipeline of NeRF&rarr;3DGS, where NeRF is initialized with SMPL-X before training. We provide these pre-trained NeRFs (Instant-NGP, specifically) in [HuggingFace](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/external/human_templates/instant-ngp). You may download and organize them following the structure below:
 ```
 external
@@ -95,7 +95,7 @@ In particular, if you want to train them yourself, you can simply run the script
 bash scripts/pretrain_nerf.sh
 ```
 
-### Pre-trained 3D Avatars (Ready for Inference)
+### 3. Pre-trained 3D Avatars (Ready for Inference)
 We provide the [pre-trained weights](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars, ready for 3D animation and 2D video reenactment without training. You may download them from [HuggingFace](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and organize them following the structure below:
 ```
 outputs
@@ -114,7 +114,7 @@ Unfortunately, due to limitations of DreamWaltz-G and SMPL-X, not all of these a
 ## 💼 Datasets
 As a [score distillation](https://dreamfusion3d.github.io/)-based method, DreamWaltz-G is supervised by a pre-trained 2D diffusion model and requires no training data. The data introduced below is only used for inference.
 
-### Expressive 3D Animation
+### 1. SMPL(-X) Motion Datasets for Expressive 3D Animation
 We provide data loaders to read smpl-x motion sequences from four publicly available human motion datasets: [Motion-X](https://motion-x-dataset.github.io/), [TalkSHOW](https://talkshow.is.tue.mpg.de/), [AIST++](https://google.github.io/aistplusplus_dataset/), [3DPW](https://virtualhumans.mpi-inf.mpg.de/3DPW/). These motion data can be used to animate our 3D avatars for various demos.
 
 To use these datasets, you may download them from the official website and organize them according to the following structure (no need to unzip):
@@ -136,7 +136,7 @@ datasets
 ```
 For more details, please refer to our code in `data/human/`.
 
-### 2D Human Video Reenactment
+### 2. Our Video-Motion Dataset for Human Video Reenactment
 We build a [new dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) from [Motion-X](https://motion-x-dataset.github.io/) for 2D human video reenactment. It comprises 19 human motion scenes with original videos, inpainted videos (where humans are removed), SMPL-X motions, and camera parameters. You may download this dataset from [HuggingFace](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) and place it according to the structure below (no need to unzip):
 ```
 datasets
@@ -160,14 +160,16 @@ From our training script, you may notice that we split the two-stage training pi
 The whole training takes several hours on a single NVIDIA L40S GPU.
 
 ## 🕺 Inference
-### Avatars in Canonical Pose
+### 1. Avatars in Canonical Pose
 Assuming you have downloaded the [pre-trained 3D avatars](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and placed them correctly, you can run the following scripts to visualize the 3D avatars in their canonical poses:
 ```bash
 bash scripts/inference_canonical.sh
 ```
 The results are saved as images and videos in the respective model directories.
 
-### Expressive 3D Animation
+https://github.com/user-attachments/assets/1d5f2bf6-a664-4100-aa43-38ff900ec6df
+
+### 2. Expressive 3D Animation
 Assuming you have downloaded the [pre-trained 3D avatars](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and placed them correctly, you can run the following scripts to animate them using the SMPL-X motion sequences stored in `assets/motions/`.
 
 For 3D animation using motions from [TalkSHOW](https://talkshow.is.tue.mpg.de/) (w/ expression control), you may run:
@@ -176,39 +178,49 @@ bash scripts/inference_talkshow.sh
 ```
 The results are saved as images and videos in the respective model directories.
 
+https://github.com/user-attachments/assets/5f8ddd46-6b8b-48a5-82a1-22a7eb5f867f
+
 For 3D animation using motions from [AIST++](https://google.github.io/aistplusplus_dataset/) (w/o expression control), you may run:
 ```bash
 bash scripts/inference_aist.sh
 ```
 The results are saved as images and videos in the respective model directories.
 
-### 2D Human Video Reenactment
+https://github.com/user-attachments/assets/a3ab15c0-7cf3-42ed-a419-6f2bbdd159b6
+
+### 3. Human Video Reenactment
 We provide an inference script for 2D human video reenactment. Please download [our dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) first and place the zip file in `datasets/Motion-X-ReEnact/`. Once the [pre-trained avatars](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and [data](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) are ready, you may run:
 ```bash
 bash scripts/inference_reenact.sh
 ```
 The results are saved as images and videos in the respective model directories.
 
-### 2D Human Video Reenactment for In-the-wild Video
+https://github.com/user-attachments/assets/86ffd653-5f36-4a7a-9b10-9a5699db69ed
+
+### 4. Human Video Reenactment for In-the-wild Video
 To reenact your own video, 3D human pose and camera estimation are needed. We recommend using [tram](https://github.com/yufu-wang/tram) to extract SMPL and camera parameters, and then use our code for reenactment. As a demonstration, we provide a video example and its tram-estimated parameters in [HuggingFace](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/tram). Once the [pre-trained avatars](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and [data](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/tram) are ready, you may run:
 ```bash
 bash scripts/inference_tram.sh
 ```
+The results are saved as images and videos in the respective model directories.
 
 https://github.com/user-attachments/assets/b100c8f9-e07a-472b-9bca-774de886191c
 
 ## 🗣️ Discussions
-### The generation results are not satisfactory and suffer from problems such as over-saturation, partial missing, and blurring.
+### 1. The generation results are not satisfactory and suffer from problems such as over-saturation, partial missing, and blurring.
 DreamWaltz-G utilizes [stable-diffusion-v1-5](https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5) and [vanilla SDS](https://dreamfusion3d.github.io/) for learning 3D representations, and thus inherits the defects of these methods. We recommend adopting more advanced diffusion models and score distillation techniques, such as [ControlNeXt](https://github.com/dvlab-research/ControlNeXt) and [ISM](https://github.com/EnVision-Research/LucidDreamer).
 
-### Expression control is not accurate, especially for fictional characters.
+### 2. Expression control is not accurate, especially for fictional characters.
 Even using a 2D diffusion model with face landmark control, learning accurate 3D expression control via score distillation remains challenging. The expression control of DreamWaltz-G is largely benefited from [SMPL-X](https://smpl-x.is.tue.mpg.de/).
 Therefore, when the face of the generated 3D avatar deviate significantly from the SMPL-X template, the expression control will be inaccurate.
 
-### Related topics and future explorations.
+### 3. Related topics and future explorations.
 Building on DreamWaltz-G, there are many possible further explorations: relightable 3D avatars; disentangled 3D avatars; physical 3D avatars; image-driven avatar creation; human-object interaction; automatic skeletal rigging; human video generation/reenactment; etc.
 
-#### Please feel free to [contact me](mailto:kunh6414@gmail.com) if you have any questions, thoughts or opportunities for academic collaboration.
+### 4. The world coordinate and camera coordinate systems for DreamWaltz-G.
+<img src="assets/coord_system.png" width="50%">
+
+### Please feel free to [contact me](mailto:kunh6414@gmail.com) if you have any questions, thoughts or opportunities for academic collaboration.
 
 ## 👏 Acknowledgement
 This repository is based on many amazing research works and open-source projects: [gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting), [diffusers](https://github.com/huggingface/diffusers), [stable-dreamfusion](https://github.com/ashawkey/stable-dreamfusion), [latent-nerf](https://github.com/eladrich/latent-nerf), [threestudio](https://github.com/threestudio-project/threestudio), [Deformable-3D-Gaussians](https://github.com/ingra14m/Deformable-3D-Gaussians), [diff-gaussian-rasterization](https://github.com/ashawkey/diff-gaussian-rasterization), [gaussian-mesh-splatting](https://github.com/waczjoan/gaussian-mesh-splatting), [SuGaR](https://github.com/Anttwo/SuGaR), [smplx](https://github.com/vchoutas/smplx), etc. Thanks all the authors for their selfless contributions to the community!
