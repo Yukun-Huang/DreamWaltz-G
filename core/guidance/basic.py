@@ -88,8 +88,8 @@ CONTROLNET_CARDS = {
     }
 }
 
-CIVITAI_LORA_ROOT = "/comp_robot/huangyukun/model/lora/"
-CIVITAI_CKPT_ROOT = "/comp_robot/huangyukun/model/stable-diffusion"
+CIVITAI_LORA_ROOT = "external/diffusion_models/lora"
+CIVITAI_CKPT_ROOT = "external/diffusion_models/stable-diffusion"
 
 
 def get_model_name_or_path(model_name, use_controlnet: bool, use_sdxl: bool):

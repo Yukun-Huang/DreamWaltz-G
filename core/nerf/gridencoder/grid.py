@@ -8,14 +8,11 @@ from torch.cuda.amp import custom_bwd, custom_fwd
 
 try:
     import sys
-    # sys.path.append('/home/huangyukun/.cache/torch_extensions/py38_cu116/ours/_gridencoder/')
-    # sys.path.append('/comp_robot/zhengtianze/dreamwaltz/dreamwaltz-gaussian/core/nerf/gridencoder/build/')
     import os.path as osp
     sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), 'build'))
     import _gridencoder as _backend
 except ImportError as e:
     # assert 0, 'Please build the extension "_gridencoder" locally.'
-    # print('Please build the extension "_gridencoder" locally.')
     from .backend import _backend
 
 _gridtype_to_id = {

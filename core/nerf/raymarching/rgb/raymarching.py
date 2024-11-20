@@ -17,14 +17,11 @@ def get_backend():
     if BACKEND is None:
         try:
             import sys
-            # sys.path.append('/home/huangyukun/.cache/torch_extensions/py38_cu116/ours/_raymarchingrgb/')
-            # sys.path.append('/comp_robot/zhengtianze/dreamwaltz/dreamwaltz-gaussian/core/nerf/raymarching/rgb/build/')
             import os.path as osp
             sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), 'build'))
             import _raymarchingrgb as _backend
         except ImportError:
             # assert 0, 'Please build the extension "_raymarchingrgb" locally.'
-            # print('Please build the extension "_raymarchingrgb" locally.')
             from .backend import _backend
 
         BACKEND = _backend

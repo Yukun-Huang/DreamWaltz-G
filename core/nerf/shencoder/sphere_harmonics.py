@@ -8,11 +8,11 @@ from torch.cuda.amp import custom_bwd, custom_fwd
 
 try:
     import sys
-    sys.path.append('/home/huangyukun/.cache/torch_extensions/py38_cu116/_shencoder/')
+    import os.path as osp
+    sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), 'build'))
     import _shencoder as _backend
 except ImportError:
     # assert 0, 'Please build the extension "_shencoder" locally.'
-    # print('Please build the extension "_shencoder" locally.')
     from .backend import _backend
 
 

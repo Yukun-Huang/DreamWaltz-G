@@ -4,7 +4,7 @@ import numpy as np
 import os.path as osp
 
 
-TETS_DIR = '/comp_robot/huangyukun/text-to-3d/DreamWaltz/DreamWaltzPlus/assets/tets'
+TETS_DIR = 'assets/tets'
 
 
 def load_tets(resolution):

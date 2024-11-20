@@ -27,6 +27,7 @@ _**[Yukun Huang](https://scholar.google.com/citations?user=lHb5gzoAAAAJ),
 </p>
 
 ## 📢 News
+- [2024-11-20] 🔥New feature! Reenact our avatars for arbitrary in-the-wild video! (thank @[gt732](https://github.com/gt732))
 - [2024-10-15] 🔥Release the training and inference code.
 - [2024-10-15] 🔥Release the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars ready for inference.
 - [2024-10-15] 🔥Release a [dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) for 2D human video reenactment. It comprises 19 human motion scenes with original videos, inpainted videos (where humans are removed), SMPL-X motions, and camera parameters.
@@ -182,9 +183,16 @@ bash scripts/inference_aist.sh
 The results are saved as images and videos in the respective model directories.
 
 ### 2D Human Video Reenactment
-We also provide an inference script for 2D human video reenactment. Please download [our dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) first and place the zip file in `datasets/Motion-X-ReEnact/`. Once the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and [data](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) are ready, you may run:
+We provide an inference script for 2D human video reenactment. Please download [our dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) first and place the zip file in `datasets/Motion-X-ReEnact/`. Once the [pre-trained avatars](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and [data](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) are ready, you may run:
 ```bash
 bash scripts/inference_reenact.sh
+```
+The results are saved as images and videos in the respective model directories.
+
+### 2D Human Video Reenactment for In-the-wild Video
+To reenact your own video, 3D human pose and camera estimation are needed. We recommend using [tram](https://github.com/yufu-wang/tram) to extract SMPL and camera parameters, and then use our code for reenactment. As a demonstration, we provide a video example and its tram-estimated parameters in [HuggingFace](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/tram). Once the [pre-trained avatars](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) and [data](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/tram) are ready, you may run:
+```bash
+bash scripts/inference_tram.sh
 ```
 The results are saved as images and videos in the respective model directories.
 

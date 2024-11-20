@@ -8,14 +8,11 @@ from torch.cuda.amp import custom_bwd, custom_fwd
 
 try:
     import sys
-    # sys.path.append('/home/huangyukun/.cache/torch_extensions/py38_cu116/ours/_freqencoder/')
-    # sys.path.append('/comp_robot/zhengtianze/dreamwaltz/dreamwaltz-gaussian/core/nerf/freqencoder/build/')
     import os.path as osp
     sys.path.append(osp.join(osp.dirname(osp.abspath(__file__)), 'build'))
     import _freqencoder as _backend
 except ImportError:
     # assert 0, 'Please build the extension "_freqencoder" locally.'
-    # print('Please build the extension "_freqencoder" locally.')
     from .backend import _backend
 
 
