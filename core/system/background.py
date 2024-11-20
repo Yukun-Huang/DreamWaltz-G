@@ -90,11 +90,11 @@ class MLPBackground(nn.Module):
 
 
 class VideoBackground:
-    def __init__(self, path: str) -> None:
+    def __init__(self, path: str, preload: bool = True) -> None:
         # Load Video
         if osp.isfile(path):
             video_path = path
-            self.use_temp_video = False
+            self.use_temp_cache = False
         elif path.startswith('motionx_reenact,'):
             import tempfile
             from data.human.motionx_reenact import MotionX_ReEnact
@@ -102,25 +102,40 @@ class VideoBackground:
             video_path = osp.join(tempfile.gettempdir(), f'{path}.mp4')
             filename = path.replace('motionx_reenact,', '', 1)
             motionx_reenact.extract_video(filename, save_path=video_path, video_type='inpainting')
-            self.use_temp_video = True
+            self.use_temp_cache = True
         else:
             raise FileNotFoundError(f"Video File Not Found: {path}")
-        frame_source = cv2.VideoCapture(video_path)
         # Set Properties
+        frame_source = cv2.VideoCapture(video_path)
         self.fps = int(frame_source.get(cv2.CAP_PROP_FPS))
         self.frame_count = int(frame_source.get(cv2.CAP_PROP_FRAME_COUNT))
         self.frame_width = int(frame_source.get(cv2.CAP_PROP_FRAME_WIDTH))
         self.frame_height = int(frame_source.get(cv2.CAP_PROP_FRAME_HEIGHT))
         self.video_path = video_path
         self.frame_source = frame_source
+        # Preload
+        self.frame_cache = self.load_all_frames() if preload else None
+
+    def load_all_frames(self):
+        frames = []
+        for i in range(self.frame_count):
+            ret, frame = self.frame_source.read()
+            if ret:
+                frames.append(frame)
+            else:
+                raise ValueError(f"Failed to Read Frame at Index: {i}")
+        return frames
 
     def get_background(self, frame_index: int) -> np.ndarray:
-        self.frame_source.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
-        ret, frame = self.frame_source.read()
-        if ret:
-            return frame
+        if self.frame_cache is not None:
+            return self.frame_cache[frame_index]
         else:
-            raise ValueError(f"Failed to Read Frame at Index: {frame_index}")
+            self.frame_source.set(cv2.CAP_PROP_POS_FRAMES, frame_index)
+            ret, frame = self.frame_source.read()
+            if ret:
+                return frame
+            else:
+                raise ValueError(f"Failed to Read Frame at Index: {frame_index}")
 
     def get_background_like(self, frame_index: int, image: torch.Tensor) -> torch.Tensor:
         """
@@ -140,5 +155,6 @@ class VideoBackground:
 
     def __del__(self):
         self.frame_source.release()
-        if self.use_temp_video:
+        self.frame_cache = None
+        if self.use_temp_cache:
             os.remove(self.video_path)
