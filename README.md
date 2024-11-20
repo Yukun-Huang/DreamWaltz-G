@@ -36,7 +36,7 @@ _**[Yukun Huang](https://scholar.google.com/citations?user=lHb5gzoAAAAJ),
 Please follow the instructions below to get the code and install dependencies.
 1. Clone this repository and navigate to `DreamWaltz-G` folder:
 ```bash
-git clone https://github.com/Yukun-Huang/DreamWaltz-G.git
+git clone --branch main --single-branch https://github.com/Yukun-Huang/DreamWaltz-G.git
 cd DreamWaltz-G
 ```
 2. Install packages. Note that `requirements.txt` is automatically generated and may not be accurate. We recommend using the provided script for installation:
