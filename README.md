@@ -27,7 +27,7 @@ _**[Yukun Huang](https://yukun-huang.github.io/),
 </p>
 
 ## 📢 News
-- [2025-06-27] 📢Accepted to TPAMI!
+- [2025-06-27] 📢Accepted to TPAMI 2025!
 - [2024-11-20] 🔥[New feature] Reenact arbitrary in-the-wild video with our avatars! (thank @[gt732](https://github.com/gt732))
 - [2024-10-15] 🔥Release the training and inference code.
 - [2024-10-15] 🔥Release the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars ready for inference.
