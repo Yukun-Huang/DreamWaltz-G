@@ -28,7 +28,7 @@ _**[Yukun Huang](https://yukun-huang.github.io/),
 
 ## 📢 News
 - [2025-06-27] Accepted to TPAMI 2025!
-- [2024-11-20] [New feature] Reenact arbitrary in-the-wild video with our avatars! (thank @[gt732](https://github.com/gt732))
+- [2024-11-20] [Feature] Reenact arbitrary in-the-wild video with our avatars! (thank @[gt732](https://github.com/gt732))
 - [2024-10-15] Release the training and inference code.
 - [2024-10-15] Release the [pre-trained models](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/outputs) of 12 full-body 3D Gaussian avatars ready for inference.
 - [2024-10-15] Release a [dataset](https://huggingface.co/KevinHuang/DreamWaltz-G/tree/main/datasets/Motion-X-ReEnact) for 2D human video reenactment. It comprises 19 human motion scenes with original videos, inpainted videos (where humans are removed), SMPL-X motions, and camera parameters.
