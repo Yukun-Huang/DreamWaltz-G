@@ -8,7 +8,7 @@
 <a href='https://yukun-huang.github.io/DreamWaltz-G/'><img src='https://img.shields.io/badge/Project-Page-Green'></a> &nbsp;
 <a href='https://huggingface.co/KevinHuang/DreamWaltz-G'><img src='https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model & Dataset-blue'></a>
 
-_**[Yukun Huang](https://scholar.google.com/citations?user=lHb5gzoAAAAJ),
+_**[Yukun Huang](https://yukun-huang.github.io/),
 [Jianan Wang](https://github.com/wendyjnwang),
 [Ailing Zeng](https://ailingzeng.site),
 [Zheng-Jun Zha](https://en.auto.ustc.edu.cn/2021/0616/c26828a513174/page.htm),
